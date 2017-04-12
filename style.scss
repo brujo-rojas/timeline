@@ -132,6 +132,14 @@ $cb : #9e9e9e;
     overflow: scroll;
     cursor: pointer;
 
+    .square{
+      &.select{
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        background: yellow;
+      }
+    }
     .hover-cursor{
       width: $day-width;
       height: $day-height;

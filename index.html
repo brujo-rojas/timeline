@@ -30,6 +30,9 @@
         </div>
       </nav>
       <div id="tl-container" ng-click="tl.selectDay($event)" ng-mousemove="tl.tlMouseOver($event)">
+        <div class="square select" ng-repeat="s in tl.diasSeleccionados"
+          style="left: {{s.positionsOffset.left}}px; top: {{s.positionsOffset.top}}px"
+        ></div>
         <div class="equipo-time-content" ng-repeat="equipo in tl.equipos">
           <div class="sector-time-content" ng-repeat="sector in equipo.sectores">
             <div  ng-repeat="dia in sector.diasData" class="dia" style="left: {{dia.position}}px">

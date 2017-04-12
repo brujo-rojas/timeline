@@ -87,6 +87,11 @@ body {
     height: 460px;
     overflow: scroll;
     cursor: pointer; }
+    #container #tl-container .square.select {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      background: yellow; }
     #container #tl-container .hover-cursor {
       width: 30px;
       height: 30px;

@@ -24,8 +24,12 @@
     var $tlc             = $(el).find('#tl-container');
     var $sidebar         = $(el).find('nav');
     var $header          = $(el).find('header');
+    var leftOffset = 200; //TODO hacer dinamico
+    var topOffset = 0;
+
     vm.equipos           = [];
     vm.lastPosition      = 0;
+    vm.diasSeleccionados = [];
 
     function unixToPosition(unix) {
       var m = moment(unix);
@@ -35,7 +39,7 @@
     }
 
     function positionToUnix(position) {
-      var offsetLeft = 200;
+      var offsetLeft = 0;
       var a = position - offsetLeft;
       a /= 30;
       var f = angular.copy(fechaInicio);
@@ -78,7 +82,6 @@
         console.error("sectorToPosition: sector no encontrado");
       }
     }
-
 
     for (var i = 0; i <= diffDays; i++) {
       dias.push({
@@ -149,18 +152,41 @@
       var y = parseInt(target.css("padding-top")) + parseInt(target.css("margin-top")) + parseInt(target.position().top);
       var b = ev.clientY + target.scrollTop() - y;
       var top = b - (b%30);
+      return {
+        left:left,
+        top:top
+      }
     }
 
     vm.selectDay = function(ev) {
       var positions = vm.eventToPosition(ev);
       var momentDate = positionToUnix(positions.left);
       var sector = positionToSector(positions.top);
-      console.dir(momentDate);
-      console.dir(sector);
-      vm.diasSeleccionados.push({
-        moment: momentDate,
-        sector: sector
+      var sm  = {
+        positions : positions,
+        moment    : momentDate,
+        sector    : sector,
+        positionsOffset:{
+          left: positions.left + leftOffset,
+          top: positions.top + topOffset
+        }
+      }
+      var i = vm.isSelected(sm)
+      if ( i == -1) {
+        vm.diasSeleccionados.push(sm);
+      }else{
+        vm.diasSeleccionados.splice(i, 1);
+      }
+    }
+
+    vm.isSelected = function(sm){
+      var isSelected = -1;
+      angular.forEach(vm.diasSeleccionados, function(sms, index) {
+        if (sms.sector.id == sm.sector.id && sms.moment.isSame(sm.moment)) {
+          isSelected = index;
+        }
       });
+      return isSelected;
     }
 
     var fixedTable = function() {
