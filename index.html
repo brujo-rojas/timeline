@@ -1,0 +1,51 @@
+<!doctype html>
+<html ng-app="Timeline" ng-controller="timelineCtrl as tl">
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  </head>
+  <body  ng-cloak>
+    <div id="container">
+      <div class="esquina"></div>
+      <div class="popover">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <header>
+        <div class="dia-calendario" ng-repeat="dia in tl.diasHeader">
+          <span>{{dia.unix | date:"d MMM"}}</span>
+        </div>
+      </header>
+      <nav>
+        <div class="equipo" ng-repeat="equipo in tl.equipos">
+          <div class="nombre-equipo">
+            <span>
+              {{equipo.name}} - {{equipo.id}}
+            </span>
+          </div>
+          <div class="sector" ng-repeat="sector in equipo.sectores">
+            <span>
+              {{sector.name}} - {{sector.id}}
+            </span>
+          </div>
+        </div>
+      </nav>
+      <div id="tl-container" ng-click="tl.selectDay($event)" ng-mousemove="tl.tlMouseOver($event)">
+        <div class="equipo-time-content" ng-repeat="equipo in tl.equipos">
+          <div class="sector-time-content" ng-repeat="sector in equipo.sectores">
+            <div  ng-repeat="dia in sector.diasData" class="dia" style="left: {{dia.position}}px">
+              <span class="number blue">{{dia.riego}}</span>
+            </div>
+            <div class="last-position" style="margin-left: {{tl.lastPosition}}px"></div>
+          </div>
+        </div>
+        <div class="hover-cursor"></div>
+      </div>
+    </div>
+  </body>
+
+  <script src="bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
+  <script src="bower_components/lodash/dist/lodash.min.js" charset="utf-8"></script>
+  <script src="bower_components/moment/min/moment.min.js" charset="utf-8"></script>
+  <script src="bower_components/angular/angular.min.js" charset="utf-8"></script>
+  <script src="app.js" charset="utf-8"></script>
+</html>

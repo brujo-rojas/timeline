@@ -1,0 +1,204 @@
+*{
+  //box-shadow: 0px 0px 1px red;
+}
+body{
+  padding: 0px !important;
+  margin: 0px !important;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+
+$sidenav-width     : 200px;
+$general-height    : 500px;
+$general-width     : 700px;
+$tl-width          : auto; //4000px;
+
+$header-width      : $tl-width;
+$header-height     : 40px;
+
+$header-day-width  : 30px;
+$header-day-height : 30px;
+
+$day-height        : 30px;
+$day-width         : 30px;
+
+$z1                : 10;
+$z2                : 20;
+$z3                : 30;
+
+$c1 : #fafafa;
+$c2 : #ffcdd2;
+$cb : #9e9e9e;
+
+
+
+#container{
+  overflow:hidden;
+  height: $general-height;
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  color: #263238;
+  .last-position{
+    width: $day-width;
+    height: $day-height;
+  }
+  .esquina{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: $sidenav-width + 6px;
+    height: $header-height;
+    z-index: $z2;
+    background: white;
+  }
+  header{
+    height: $header-height;
+    background: white;
+    padding-left: $sidenav-width;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    //width: $header-width;
+    z-index: $z1;
+    display: flex; // hack
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 5px 8px 0 rgba(0,0,0,.14), 0 1px 14px 0 rgba(0,0,0,.12);
+    .dia-calendario{
+      width: $header-day-width;
+      height: $header-day-height;
+      display: inline-block;
+      //margin-right: -3.65px;
+      margin-top: 7px;
+      vertical-align: bottom;
+      span{
+        display: block;
+        font-size: 12px;
+        color: #455a64;
+        width: 60px;
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+    }
+  }
+  nav{
+    width: $sidenav-width;
+    position: absolute;
+    left: 0px;
+    top: $header-height;
+    //height: $general-height;
+    z-index: $z1;
+    background: white;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 5px 8px 0 rgba(0,0,0,.14), 0 1px 14px 0 rgba(0,0,0,.12);
+    .equipo{
+      position: relative;
+      .nombre-equipo{
+        height: 100%;
+        width: 30px;
+        left: 0px;
+        top: 0px;
+        position: absolute;
+        border-bottom: 1px solid blue;
+        background: #fff9c4;
+        span{
+          transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+          display: block;
+          text-align: center;
+          width: 190px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+        }
+      }
+    }
+    .sector{
+      height: $day-height;
+      line-height: $day-height;
+      padding-left: 60px;
+      span{
+        color: #455a64;
+      }
+    }
+  }
+
+  #tl-container{
+    background: white;
+    position: absolute;
+    left: 0px;
+    top: $header-height;
+    padding-left: $sidenav-width;
+    padding-bottom: 0px;
+    width: calc(100% - #{$sidenav-width});//$general-width;
+    height: $general-height - $header-height;
+    overflow: scroll;
+    cursor: pointer;
+
+    .hover-cursor{
+      width: $day-width;
+      height: $day-height;
+      background: green;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+    }
+
+    .equipo-time-content{
+      display: inline-block;
+      background-image: repeating-linear-gradient(
+                        90deg,
+                        $c1 ,
+                        $c1 29px,
+                        $cb 30px,
+                        $c1 31px,
+                        $c1 59px,
+                        $cb 60px,
+                        $c1 61px,
+                        $c1 89px,
+                        $cb 90px,
+                        $c1 91px,
+                        $c1 119px,
+                        $cb 120px,
+                        $c1 121px,
+                        $c1 149px,
+                        $cb 150px,
+                        $c2 151px,
+                        $c2 179px,
+                        $cb 180px,
+                        $c2 181px,
+                        $c2 209px,
+                        $cb 210px
+                        );
+    }
+
+    .sector-time-content{
+      height: $day-height;
+      width: $tl-width;
+      position: relative;
+    }
+    .dia{
+      width: $day-width;
+      height: $day-height;
+      position: absolute;
+      top: 0px;
+      z-index: 6;
+      &:hover{
+        background: red;
+      }
+      .number{
+        width: $day-width;
+        display: block;
+        color: white;
+        text-align: center;
+        font-size: 12px;
+        height: $day-height / 2;
+        line-height: $day-height / 2;
+      }
+      .blue{
+        background: blue;
+      }
+      .red{
+        background: red;
+      }
+    }
+  }
+}
