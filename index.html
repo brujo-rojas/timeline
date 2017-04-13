@@ -5,16 +5,24 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
   <body  ng-cloak>
-    <div id="container">
+    <div class="timeline"
+      ng-class="{'with-sidebar-right': tl.visibleSidebarRight, 'with-sidebar-extended': tl.visibleSidebarDetails}">
       <div class="esquina"></div>
-      <div class="popover">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </div>
+
+        <div class="header-sidebar-extended">
+          lorem
+        </div>
+
+
       <header>
         <div class="dia-calendario" ng-repeat="dia in tl.diasHeader">
           <span>{{dia.unix | date:"d MMM"}}</span>
         </div>
       </header>
+
+
+
+
       <nav>
         <div class="equipo" ng-repeat="equipo in tl.equipos">
           <div class="nombre-equipo">
@@ -29,9 +37,29 @@
           </div>
         </div>
       </nav>
-      <div id="tl-container" ng-click="tl.selectDay($event)" ng-mousemove="tl.tlMouseOver($event)">
+
+
+
+
+      <div class="sidebar-extended">
+        <div class="equipo" ng-repeat="equipo in tl.equipos">
+          <div class="sector" ng-repeat="sector in equipo.sectores">
+            <span>
+              {{sector.name}} - {{sector.id}}
+            </span>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <div class="tl-container"
+       ng-click="tl.selectDay($event)" ng-mousemove="tl.tlMouseOver($event)">
+
         <div class="square select" ng-repeat="s in tl.diasSeleccionados"
-          style="left: {{s.positionsOffset.left}}px; top: {{s.positionsOffset.top}}px"
+          style="left: {{s.positionOffset.left}}px; top: {{s.positionOffset.top}}px"
         ></div>
         <div class="equipo-time-content" ng-repeat="equipo in tl.equipos">
           <div class="sector-time-content" ng-repeat="sector in equipo.sectores">
@@ -43,7 +71,32 @@
         </div>
         <div class="hover-cursor"></div>
       </div>
+
+
+
+      <div class="sidebar-right" ng-class="{active: tl.visibleSidebarRight}">
+        <div class="header-sidebar-right">
+          ipsum
+        </div>
+        <div class="sidebar-right-content">
+          <div class="equipo" ng-repeat="equipo in tl.equipos">
+            <div class="sector" ng-repeat="sector in equipo.sectores">
+              <span>
+                {{sector.name}} - {{sector.id}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
     </div>
+    <button ng-click="tl.mostrarSidebar()" type="button">mostrarSidebar</button>
+    <button ng-click="tl.ocultarSidebar()" type="button">ocultarSidebar</button>
+    <br>
+    <button type="button" ng-click="tl.mostrarDetalles()">mostrarDetalles</button>
+    <button type="button" ng-click="tl.ocultarDetalles()">ocultarDetalles</button>
   </body>
 
   <script src="bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>

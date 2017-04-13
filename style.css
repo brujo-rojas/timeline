@@ -5,46 +5,80 @@ body {
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important; }
 
-#container {
+.timeline {
   overflow: hidden;
   height: 500px;
   position: relative;
   font-family: 'Roboto', sans-serif;
-  color: #263238; }
-  #container .last-position {
+  color: #263238;
+  transition: 0.25s padding ease; }
+  .timeline.with-sidebar-right {
+    padding-right: 200px; }
+  .timeline.with-sidebar-extended .sidebar-extended,
+  .timeline.with-sidebar-extended .header-sidebar-extended {
+    width: 200px; }
+  .timeline.with-sidebar-extended .tl-container,
+  .timeline.with-sidebar-extended header {
+    padding-left: 400px; }
+  .timeline .last-position {
     width: 30px;
     height: 30px; }
-  #container .esquina {
+  .timeline .esquina {
     position: absolute;
     left: 0;
     top: 0;
-    width: 206px;
+    width: 200px;
     height: 40px;
-    z-index: 20;
+    z-index: 30;
     background: white; }
-  #container header {
+  .timeline .header-sidebar-extended {
+    height: 40px;
+    width: 0px;
+    position: absolute;
+    left: 200px;
+    top: 0;
+    background: red;
+    transition: 0.25s width ease;
+    overflow: hidden;
+    z-index: 30; }
+  .timeline header {
     height: 40px;
     background: white;
     padding-left: 200px;
     position: absolute;
     top: 0px;
     left: 0px;
-    z-index: 10;
+    z-index: 20;
     display: flex;
-    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }
-    #container header .dia-calendario {
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
+    transition: 0.25s padding ease; }
+    .timeline header .dia-calendario {
       width: 30px;
       height: 30px;
       display: inline-block;
       margin-top: 7px;
       vertical-align: bottom; }
-      #container header .dia-calendario span {
+      .timeline header .dia-calendario span {
         display: block;
         font-size: 12px;
         color: #455a64;
         width: 60px;
         transform: rotate(-45deg) translate(5px, -5px); }
-  #container nav {
+  .timeline .sidebar-extended {
+    width: 0px;
+    background: red;
+    position: absolute;
+    left: 200px;
+    top: 0px;
+    z-index: 10;
+    padding-top: 40px;
+    overflow: hidden;
+    transition: 0.25s width ease; }
+    .timeline .sidebar-extended .sector {
+      height: 30px;
+      line-height: 30px;
+      width: 200px; }
+  .timeline nav {
     width: 200px;
     position: absolute;
     left: 0px;
@@ -52,9 +86,9 @@ body {
     z-index: 10;
     background: white;
     box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12); }
-    #container nav .equipo {
+    .timeline nav .equipo {
       position: relative; }
-      #container nav .equipo .nombre-equipo {
+      .timeline nav .equipo .nombre-equipo {
         height: 100%;
         width: 30px;
         left: 0px;
@@ -62,7 +96,7 @@ body {
         position: absolute;
         border-bottom: 1px solid blue;
         background: #fff9c4; }
-        #container nav .equipo .nombre-equipo span {
+        .timeline nav .equipo .nombre-equipo span {
           transform: translateX(-50%) translateY(-50%) rotate(-90deg);
           display: block;
           text-align: center;
@@ -70,29 +104,60 @@ body {
           position: absolute;
           top: 50%;
           left: 50%; }
-    #container nav .sector {
+    .timeline nav .sector {
       height: 30px;
       line-height: 30px;
       padding-left: 60px; }
-      #container nav .sector span {
+      .timeline nav .sector span {
         color: #455a64; }
-  #container #tl-container {
-    background: white;
+  .timeline .sidebar-right {
+    background: green;
+    width: 200px;
+    padding-top: 40px;
     position: absolute;
+    right: -200px;
+    top: 0px;
+    z-index: 30;
+    transition: 0.25s transform ease; }
+    .timeline .sidebar-right.active {
+      transform: translateX(-200px); }
+    .timeline .sidebar-right .header-sidebar-right {
+      position: absolute;
+      left: 0;
+      top: 0;
+      box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
+      width: 200px;
+      height: 40px;
+      background: green; }
+    .timeline .sidebar-right .sidebar-right-content {
+      width: 200px; }
+      .timeline .sidebar-right .sidebar-right-content .sector {
+        height: 30px;
+        line-height: 30px;
+        width: 200px; }
+  .timeline .tl-container {
+    background: white;
+    position: relative;
+    /*
+    position:absolute;
     left: 0px;
-    top: 40px;
+    top: $header-height;
+    */
+    margin-top: 40px;
     padding-left: 200px;
     padding-bottom: 0px;
-    width: calc(100% - 200px);
+    width: 100%;
+    box-sizing: border-box;
     height: 460px;
     overflow: scroll;
-    cursor: pointer; }
-    #container #tl-container .square.select {
+    cursor: pointer;
+    transition: 0.25s padding ease; }
+    .timeline .tl-container .square.select {
       width: 30px;
       height: 30px;
       position: absolute;
       background: yellow; }
-    #container #tl-container .hover-cursor {
+    .timeline .tl-container .hover-cursor {
       width: 30px;
       height: 30px;
       background: green;
@@ -100,22 +165,23 @@ body {
       left: 0;
       top: 0;
       z-index: 1; }
-    #container #tl-container .equipo-time-content {
+    .timeline .tl-container .equipo-time-content {
       display: inline-block;
+      margin-bottom: -4px;
       background-image: repeating-linear-gradient(90deg, #fafafa, #fafafa 29px, #9e9e9e 30px, #fafafa 31px, #fafafa 59px, #9e9e9e 60px, #fafafa 61px, #fafafa 89px, #9e9e9e 90px, #fafafa 91px, #fafafa 119px, #9e9e9e 120px, #fafafa 121px, #fafafa 149px, #9e9e9e 150px, #ffcdd2 151px, #ffcdd2 179px, #9e9e9e 180px, #ffcdd2 181px, #ffcdd2 209px, #9e9e9e 210px); }
-    #container #tl-container .sector-time-content {
+    .timeline .tl-container .sector-time-content {
       height: 30px;
       width: auto;
       position: relative; }
-    #container #tl-container .dia {
+    .timeline .tl-container .dia {
       width: 30px;
       height: 30px;
       position: absolute;
       top: 0px;
       z-index: 6; }
-      #container #tl-container .dia:hover {
+      .timeline .tl-container .dia:hover {
         background: red; }
-      #container #tl-container .dia .number {
+      .timeline .tl-container .dia .number {
         width: 30px;
         display: block;
         color: white;
@@ -123,9 +189,9 @@ body {
         font-size: 12px;
         height: 15px;
         line-height: 15px; }
-      #container #tl-container .dia .blue {
+      .timeline .tl-container .dia .blue {
         background: blue; }
-      #container #tl-container .dia .red {
+      .timeline .tl-container .dia .red {
         background: red; }
 
 /*# sourceMappingURL=style.css.map */

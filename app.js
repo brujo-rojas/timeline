@@ -11,25 +11,30 @@
 
   /* @ngInject */
   function timelineCtrl($scope) {
-    var vm               = this;
-    var dias             = [];
-    var fechaInicio      = moment('7/10/2016','D/M/YYYY');
-    var fechaTermino     = moment('27/2/2017','D/M/YYYY');
-    var fechaInicioAux   = angular.copy(fechaInicio);
-    var diffDays         = fechaTermino.diff(fechaInicio, 'days');
-    var r                = 30;
-    var cantidadSectores = 20;
-    var cantidadEquipos  = 5;
-    var el               = $("#container");
-    var $tlc             = $(el).find('#tl-container');
-    var $sidebar         = $(el).find('nav');
-    var $header          = $(el).find('header');
-    var leftOffset = 200; //TODO hacer dinamico
-    var topOffset = 0;
+    var vm                   = this;
+    var dias                 = [];
+    var fechaInicio          = moment('7/10/2016','D/M/YYYY');
+    var fechaTermino         = moment('27/2/2017','D/M/YYYY');
+    var fechaInicioAux       = angular.copy(fechaInicio);
+    var diffDays             = fechaTermino.diff(fechaInicio, 'days');
+    var r                    = 30;
+    var cantidadSectores     = 20;
+    var cantidadEquipos      = 5;
+    var el                   = $(".timeline");
+    var $tlc                 = $(el).find('.tl-container');
+    var $sidebar             = $(el).find('nav');
+    var $sidebarExtended     = $(el).find('.sidebar-extended');
+    var $sidebarRight        = $(el).find('.sidebar-right');
+    var $headerRight         = $(el).find('.header-sidebar-right');
+    var $header              = $(el).find('header');
+    var leftOffset           = 200; //TODO hacer dinamico
+    var topOffset            = 0;
 
-    vm.equipos           = [];
-    vm.lastPosition      = 0;
-    vm.diasSeleccionados = [];
+    vm.equipos               = [];
+    vm.lastPosition          = 0;
+    vm.diasSeleccionados     = [];
+    vm.visibleSidebarRight   = false;
+    vm.visibleSidebarDetails = false;
 
     function unixToPosition(unix) {
       var m = moment(unix);
@@ -130,16 +135,26 @@
       });
     });
 
+    vm.ocultarSidebar= function() {
+      vm.visibleSidebarRight = false;
+    }
+
+    vm.mostrarSidebar = function() {
+      vm.visibleSidebarRight = true;
+    }
+
+    vm.ocultarDetalles = function() {
+      vm.visibleSidebarDetails = false;
+    }
+    vm.mostrarDetalles = function() {
+      vm.visibleSidebarDetails = true;
+    }
 
     vm.tlMouseOver = function(ev) {
-      //var $tlc = $("#tl-container");
-      var l    = $tlc.position().left + parseInt($tlc.css("padding-left"));
-      var top  = _.floor((ev.clientY - $tlc.position().top + $tlc.scrollTop()) / r) * r;
-      var left = _.floor((ev.clientX - l + $tlc.scrollLeft()) / r)*r  + parseInt($tlc.css("padding-left"));
-      $(".hover-cursor").css({
-        top  : top,
-        left : left
-      });
+      var position = vm.eventToPosition(ev);
+      position.left += parseInt($tlc.css("padding-left"));//correccion de position
+      $(".hover-cursor").css(position);
+      console.log(position);
     }
 
 
@@ -152,23 +167,25 @@
       var y = parseInt(target.css("padding-top")) + parseInt(target.css("margin-top")) + parseInt(target.position().top);
       var b = ev.clientY + target.scrollTop() - y;
       var top = b - (b%30);
-      return {
+
+      var position = {
         left:left,
         top:top
       }
+      return position;
     }
 
     vm.selectDay = function(ev) {
-      var positions = vm.eventToPosition(ev);
-      var momentDate = positionToUnix(positions.left);
-      var sector = positionToSector(positions.top);
+      var position = vm.eventToPosition(ev);
+      var momentDate = positionToUnix(position.left);
+      var sector = positionToSector(position.top);
       var sm  = {
-        positions : positions,
+        position : position,
         moment    : momentDate,
         sector    : sector,
-        positionsOffset:{
-          left: positions.left + leftOffset,
-          top: positions.top + topOffset
+        positionOffset:{
+          left: position.left + leftOffset,
+          top: position.top + topOffset
         }
       }
       var i = vm.isSelected(sm)
@@ -177,6 +194,14 @@
       }else{
         vm.diasSeleccionados.splice(i, 1);
       }
+      /*
+      sm.sector.diasData.push({
+        unix: sm.moment.unix() * 1000,
+        riego: _.random(1, 5),
+        position: unixToPosition(sm.moment.unix()*1000),
+      })
+      */
+
     }
 
     vm.isSelected = function(sm){
@@ -190,9 +215,13 @@
     }
 
     var fixedTable = function() {
-      return $($tlc).scroll(function() {
-        $($sidebar).css('margin-top', - $($tlc).scrollTop());
-        return $($header).css('margin-left', - $($tlc).scrollLeft());
+      $($tlc).scroll(function() {
+        $($sidebar).css('transform', "translateY(-"+ $($tlc).scrollTop()+"px)");
+        $($sidebarExtended).css('transform', "translateY(-"+ $($tlc).scrollTop()+"px)");
+        $($sidebarRight).css('margin-top', "-"+ $($tlc).scrollTop()+"px");
+
+        $($header).css('transform', "translateX(-"+ $($tlc).scrollLeft()+"px)");
+        $($headerRight).css('transform', "translateY("+ $($tlc).scrollTop()+"px)");
       });
     };
 
