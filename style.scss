@@ -13,7 +13,7 @@ body{
 $sidenav-width          : 200px;
 $sidebar-right-width    : 200px;
 $sidenav-extended-width : 200px;
-$general-height         : 500px;
+$general-height         : 100%;
 $general-width          : 700px;
 $tl-width               : auto; //4000px;
 
@@ -46,9 +46,16 @@ $et-color: $blue;
 
 
 .random-container{
-  width: 1000px;
   height: 500px;
   margin: 0 auto;
+  box-shadow: 0 22px 70px 4px rgba(0,0,0,0.56), 0 0 0 1px rgba(0, 0, 0, 0.2);
+  resize: both;
+  overflow: auto;
+  padding: 20px;
+  &:hover{
+    width: 1px;
+    height: 1px;
+  }
 }
 
 
@@ -71,6 +78,11 @@ $et-color: $blue;
     .tl-container,
     header{
       padding-left: $sidenav-width + $sidenav-extended-width;
+    }
+    .square{
+      &.select{
+        transform: translateX($sidenav-extended-width);
+      }
     }
   }
   &.with-selected-days .dia .number{
@@ -325,7 +337,7 @@ $et-color: $blue;
     padding-bottom: 0px;
     width: 100%;//$general-width;
     box-sizing: border-box;
-    height: $general-height - $header-height;
+    height: calc(#{$general-height} - #{$header-height});
     overflow: scroll;
     cursor: pointer;
     transition: 0.25s padding ease;

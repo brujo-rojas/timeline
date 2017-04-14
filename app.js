@@ -192,6 +192,7 @@
 
     vm.selectDay = function(ev) {
       var position = vm.eventToPosition(ev);
+      //position.left += parseInt($tlc.css("padding-left"));//correccion de position
       var momentDate = positionToUnix(position.left);
       var sector = positionToSector(position.top);
       var sm  = {

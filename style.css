@@ -6,13 +6,19 @@ body {
   display: none !important; }
 
 .random-container {
-  width: 1000px;
   height: 500px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56), 0 0 0 1px rgba(0, 0, 0, 0.2);
+  resize: both;
+  overflow: auto;
+  padding: 20px; }
+  .random-container:hover {
+    width: 1px;
+    height: 1px; }
 
 .timeline {
   overflow: hidden;
-  height: 500px;
+  height: 100%;
   position: relative;
   font-family: 'Roboto', sans-serif;
   color: #263238;
@@ -25,6 +31,8 @@ body {
   .timeline.with-sidebar-extended .tl-container,
   .timeline.with-sidebar-extended header {
     padding-left: 400px; }
+  .timeline.with-sidebar-extended .square.select {
+    transform: translateX(200px); }
   .timeline.with-selected-days .dia .number {
     opacity: 0.5; }
   .timeline .last-position {
@@ -224,7 +232,7 @@ body {
     padding-bottom: 0px;
     width: 100%;
     box-sizing: border-box;
-    height: 460px;
+    height: calc(100% - 40px);
     overflow: scroll;
     cursor: pointer;
     transition: 0.25s padding ease; }
