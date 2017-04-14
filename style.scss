@@ -137,9 +137,12 @@ $et-color: $blue;
     left: $sidenav-width;
     top: 0;
     background: red;
-    transition: 0.25s width ease;
+    transition: 0.25s width ease, 0.5s height ease;
     overflow: hidden;
     z-index: $z3;
+    &.show-inputs{
+      height: 130px;
+    }
   }
 
   header{

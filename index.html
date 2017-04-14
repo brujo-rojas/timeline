@@ -13,6 +13,7 @@
         'with-selected-days': tl.diasSeleccionados.length > 0,
         'with-sidebar-extended': tl.visibleSidebarDetails
       }">
+
       <div class="esquina"
       ng-class="{'show-inputs': tl.showedHeaderInputs}">
       <button type="button" ng-click="tl.toggleHeaderInputs()">toggle</button>
@@ -22,7 +23,8 @@
       <span class="t-med">temp med:</span>
     </div>
 
-        <div class="header-sidebar-extended">
+        <div class="header-sidebar-extended"
+          ng-class="{'show-inputs': tl.showedHeaderInputs}">
           lorem
         </div>
 

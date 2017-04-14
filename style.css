@@ -77,9 +77,11 @@ body {
     left: 200px;
     top: 0;
     background: red;
-    transition: 0.25s width ease;
+    transition: 0.25s width ease, 0.5s height ease;
     overflow: hidden;
     z-index: 30; }
+    .timeline .header-sidebar-extended.show-inputs {
+      height: 130px; }
   .timeline header {
     height: 40px;
     background: white;
