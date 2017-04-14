@@ -129,7 +129,8 @@
           if (dia.hasRiego == 1) {
             sector.diasData.push({
               unix: dia.unix,
-              riego: _.random(1, 5),
+              riego: _.random(1.1, 55.9),
+              scholander: _.random(1, 12),
               position: unixToPosition(dia.unix)
             });
           }

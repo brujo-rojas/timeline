@@ -31,7 +31,8 @@ body {
     height: 40px;
     z-index: 30;
     background: white;
-    transition: 0.5s all ease; }
+    transition: 0.5s all ease;
+    overflow: hidden; }
     .timeline .esquina.show-inputs {
       height: 100px;
       padding-top: 30px; }
@@ -45,6 +46,14 @@ body {
         line-height: 21px;
         margin-bottom: 3px;
         margin-right: 10px; }
+      .timeline .esquina.show-inputs .t-min {
+        color: #e53935; }
+      .timeline .esquina.show-inputs .t-max {
+        color: #e53935; }
+      .timeline .esquina.show-inputs .t-med {
+        color: #e53935; }
+      .timeline .esquina.show-inputs .et {
+        color: #1976d2; }
     .timeline .esquina .t-min,
     .timeline .esquina .t-max,
     .timeline .esquina .t-med,
@@ -74,7 +83,8 @@ body {
     z-index: 20;
     display: flex;
     box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12);
-    transition: 0.25s padding ease, 0.5s height ease; }
+    transition: 0.25s padding ease, 0.5s height ease;
+    overflow: hidden; }
     .timeline header.show-inputs {
       height: 130px; }
       .timeline header.show-inputs .date {
@@ -91,6 +101,14 @@ body {
         margin-bottom: 2px;
         font-size: 12px;
         text-align: center; }
+      .timeline header.show-inputs .t-min {
+        color: #e53935; }
+      .timeline header.show-inputs .t-max {
+        color: #e53935; }
+      .timeline header.show-inputs .t-med {
+        color: #e53935; }
+      .timeline header.show-inputs .et {
+        color: #1976d2; }
     .timeline header:not(.show-inputs) .t-min,
     .timeline header:not(.show-inputs) .t-max,
     .timeline header:not(.show-inputs) .t-med,
@@ -103,7 +121,7 @@ body {
       margin-top: 7px;
       vertical-align: bottom; }
       .timeline header .dia-calendario span {
-        cursor: pointer; }
+        cursor: default; }
       .timeline header .dia-calendario .date {
         display: block;
         font-size: 12px;
@@ -239,9 +257,9 @@ body {
         font-size: 12px;
         height: 15px;
         line-height: 15px; }
-      .timeline .tl-container .dia .blue {
+      .timeline .tl-container .dia .scholander {
+        background: #ff5722; }
+      .timeline .tl-container .dia .riego {
         background: #1976d2; }
-      .timeline .tl-container .dia .red {
-        background: #e53935; }
 
 /*# sourceMappingURL=style.css.map */

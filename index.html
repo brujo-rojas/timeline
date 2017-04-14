@@ -10,10 +10,10 @@
       <div class="esquina"
       ng-class="{'show-inputs': tl.showedHeaderInputs}">
       <button type="button" ng-click="tl.toggleHeaderInputs()">toggle</button>
+      <span class="et">Et</span>
       <span class="t-min">temp min:</span>
       <span class="t-max">temp max:</span>
       <span class="t-med">temp med:</span>
-      <span class="et">Et</span>
     </div>
 
         <div class="header-sidebar-extended">
@@ -26,10 +26,10 @@
           <span class="date">{{dia.unix | date:"d"}}
             <span class="month">{{dia.unix | date:"MMM"}}</span>
           </span>
+          <input type="text" class="et" ng-model="dia.et">
           <input type="text" class="t-min" ng-model="dia.tMin">
           <input type="text" class="t-max" ng-model="dia.tMax">
           <input type="text" class="t-med" ng-model="dia.tMed">
-          <input type="text" class="et" ng-model="dia.et">
         </div>
       </header>
 
@@ -39,14 +39,10 @@
       <nav>
         <div class="equipo" ng-repeat="equipo in tl.equipos">
           <div class="nombre-equipo">
-            <span>
-              {{equipo.name}} - {{equipo.id}}
-            </span>
+            <span ng-bind="equipo.name + ' - ' +equipo.id"></span>
           </div>
           <div class="sector" ng-repeat="sector in equipo.sectores">
-            <span>
-              {{sector.name}} - {{sector.id}}
-            </span>
+            <span ng-bind="sector.name + ' - ' + sector.id"></span>
           </div>
         </div>
       </nav>
@@ -57,9 +53,7 @@
       <div class="sidebar-extended">
         <div class="equipo" ng-repeat="equipo in tl.equipos">
           <div class="sector" ng-repeat="sector in equipo.sectores">
-            <span>
-              {{sector.name}} - {{sector.id}}
-            </span>
+              <span ng-bind="sector.name + ' - ' + sector.id"></span>
           </div>
         </div>
       </div>
@@ -77,7 +71,8 @@
         <div class="equipo-time-content" ng-repeat="equipo in tl.equipos">
           <div class="sector-time-content" ng-repeat="sector in equipo.sectores">
             <div  ng-repeat="dia in sector.diasData" class="dia" style="left: {{dia.position}}px">
-              <span class="number blue">{{dia.riego}}</span>
+              <span class="number riego" ng-bind="(dia.riego | number:1)"></span>
+              <span class="number scholander" ng-bind="(dia.scholander | number:1)"></span>
             </div>
             <div class="last-position" style="margin-left: {{tl.lastPosition}}px"></div>
           </div>
@@ -94,9 +89,7 @@
         <div class="sidebar-right-content">
           <div class="equipo" ng-repeat="equipo in tl.equipos">
             <div class="sector" ng-repeat="sector in equipo.sectores">
-              <span>
-                {{sector.name}} - {{sector.id}}
-              </span>
+              <span ng-bind="sector.name + ' - ' + sector.id"></span>
             </div>
           </div>
         </div>
