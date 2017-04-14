@@ -5,6 +5,16 @@
   .module('Timeline', [
     //'dependencies'
   ])
+  .directive('bindOnce', function() {
+    return {
+      scope: true,
+      link: function( $scope ) {
+        setTimeout(function() {
+          $scope.$destroy();
+        }, 0);
+      }
+    }
+  })
   .controller('timelineCtrl', timelineCtrl);
 
   timelineCtrl.$inject = ['$scope'];
@@ -13,8 +23,8 @@
   function timelineCtrl($scope) {
     var vm                   = this;
     var dias                 = [];
-    var fechaInicio          = moment('7/10/2016','D/M/YYYY');
-    var fechaTermino         = moment('27/2/2017','D/M/YYYY');
+    var fechaInicio          = moment('7/10/2017','D/M/YYYY');
+    var fechaTermino         = moment('27/12/2017','D/M/YYYY');
     var fechaInicioAux       = angular.copy(fechaInicio);
     var diffDays             = fechaTermino.diff(fechaInicio, 'days');
     var r                    = 30;
@@ -35,7 +45,7 @@
     vm.diasSeleccionados     = [];
     vm.visibleSidebarRight   = false;
     vm.visibleSidebarDetails = false;
-    vm.showedHeaderInputs = false;
+    vm.showedHeaderInputs    = false;
 
     function unixToPosition(unix) {
       var m = moment(unix);
