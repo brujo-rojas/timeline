@@ -92,7 +92,11 @@
     for (var i = 0; i <= diffDays; i++) {
       dias.push({
         unix: fechaInicioAux.unix() * 1000,
-        hasRiego: _.random(0,1,false),
+        hasRiego : _.random(0,1,false),
+        tMin     : _.random(1,5,false),
+        tMax     : _.random(1,5,false),
+        tMed     : _.random(1,5,false),
+        et       : _.random(1,5,false),
       });
       fechaInicioAux.add(1, "days");
     }

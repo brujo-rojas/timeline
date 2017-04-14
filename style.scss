@@ -72,6 +72,33 @@ $red: #e53935; //red 600
     height: $header-height;
     z-index: $z3;
     background: white;
+    transition: 0.5s all ease;
+    &.show-inputs{
+      height: 100px;
+      padding-top: 30px;
+      .t-min,
+      .t-max,
+      .t-med,
+      .et{
+        display: block;
+        float: right;
+        clear: both;
+        line-height : 21px;
+        margin-bottom: 3px;
+        margin-right: 10px;
+      }
+    }
+    .t-min,
+    .t-max,
+    .t-med,
+    .et{
+      display:none;
+    }
+    button{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
   }
 
   .header-sidebar-extended{
@@ -97,7 +124,36 @@ $red: #e53935; //red 600
     z-index: $z2;
     display: flex; // hack
     box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 5px 8px 0 rgba(0,0,0,.14), 0 1px 14px 0 rgba(0,0,0,.12);
-    transition: 0.25s padding ease;
+    transition: 0.25s padding ease, 0.5s height ease;
+    &.show-inputs{
+      height: 130px;
+      .date{
+        transform: rotate(0deg) translate(8px, 0px) !important;
+        margin-bottom: 8px;
+      }
+      .month{
+        opacity: 0;
+      }
+      .t-min,
+      .t-max,
+      .t-med,
+      .et{
+        display:block;
+        width: 22px;
+        margin-bottom: 2px;
+        font-size: 12px;
+        text-align: center;
+      }
+    }
+
+    &:not(.show-inputs){
+      .t-min,
+      .t-max,
+      .t-med,
+      .et{
+        display: none;
+      }
+    }
     .dia-calendario{
       width: $header-day-width;
       height: $header-day-height;
@@ -114,7 +170,12 @@ $red: #e53935; //red 600
         color: #455a64;
         width: 60px;
         transform: rotate(-45deg) translate(1px, -10px);
+        transition: 0.5s transform ease;
       }
+      .month{
+        transition: 0.5s opacity ease;
+      }
+
     }
   }
   .sidebar-extended{

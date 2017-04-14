@@ -7,19 +7,29 @@
   <body  ng-cloak>
     <div class="timeline"
       ng-class="{'with-sidebar-right': tl.visibleSidebarRight, 'with-sidebar-extended': tl.visibleSidebarDetails}">
-      <div class="esquina"></div>
+      <div class="esquina"
+      ng-class="{'show-inputs': tl.showedHeaderInputs}">
+      <button type="button" ng-click="tl.toggleHeaderInputs()">toggle</button>
+      <span class="t-min">temp min:</span>
+      <span class="t-max">temp max:</span>
+      <span class="t-med">temp med:</span>
+      <span class="et">Et</span>
+    </div>
 
         <div class="header-sidebar-extended">
           lorem
         </div>
 
 
-      <header ng-click="tl.toggleHeaderInputs()"
-         ng-class="{'show-inputs': tl.showedHeaderInputs}">
+      <header ng-class="{'show-inputs': tl.showedHeaderInputs}">
         <div ng-repeat="dia in tl.diasHeader" class="dia-calendario" >
           <span class="date">{{dia.unix | date:"d"}}
             <span class="month">{{dia.unix | date:"MMM"}}</span>
           </span>
+          <input type="text" class="t-min" ng-model="dia.tMin">
+          <input type="text" class="t-max" ng-model="dia.tMax">
+          <input type="text" class="t-med" ng-model="dia.tMed">
+          <input type="text" class="et" ng-model="dia.et">
         </div>
       </header>
 
