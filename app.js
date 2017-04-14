@@ -35,6 +35,7 @@
     vm.diasSeleccionados     = [];
     vm.visibleSidebarRight   = false;
     vm.visibleSidebarDetails = false;
+    vm.showedHeaderInputs = false;
 
     function unixToPosition(unix) {
       var m = moment(unix);
@@ -154,7 +155,6 @@
       var position = vm.eventToPosition(ev);
       position.left += parseInt($tlc.css("padding-left"));//correccion de position
       $(".hover-cursor").css(position);
-      console.log(position);
     }
 
 
@@ -226,6 +226,25 @@
     };
 
     fixedTable();
+
+
+    vm.showHeaderInputs = function() {
+      vm.showedHeaderInputs = true;
+    }
+
+    vm.hideHeaderInputs = function() {
+      vm.showedHeaderInputs = false;
+    }
+
+    vm.toggleHeaderInputs = function() {
+      if (vm.showedHeaderInputs) {
+        vm.hideHeaderInputs();
+      }else{
+        vm.showHeaderInputs();
+      }
+    }
+
+
 
 
 

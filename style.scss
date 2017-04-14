@@ -35,6 +35,10 @@ $c2                     : #ffcdd2;
 $cb                     : #9e9e9e;
 
 
+$blue: #1976d2; //blue 700
+$red: #e53935; //red 600
+
+
 
 .timeline{
   overflow:hidden;
@@ -102,11 +106,14 @@ $cb                     : #9e9e9e;
       margin-top: 7px;
       vertical-align: bottom;
       span{
+        cursor: pointer;
+      }
+      .date{
         display: block;
         font-size: 12px;
         color: #455a64;
         width: 60px;
-        transform: rotate(-45deg) translate(5px, -5px);
+        transform: rotate(-45deg) translate(1px, -10px);
       }
     }
   }
@@ -140,12 +147,12 @@ $cb                     : #9e9e9e;
     .equipo{
       position: relative;
       .nombre-equipo{
-        height: 100%;
+        height: calc( 100% - 1px);
         width: 30px;
         left: 0px;
         top: 0px;
         position: absolute;
-        border-bottom: 1px solid blue;
+        border-bottom: 1px solid black;
         background: #fff9c4;
         span{
           transform: translateX(-50%) translateY(-50%) rotate(-90deg);
@@ -278,7 +285,8 @@ $cb                     : #9e9e9e;
         background: red;
       }
       .number{
-        width: $day-width;
+        width: $day-width - 2px;
+        margin-left: 1px;
         display: block;
         color: white;
         text-align: center;
@@ -287,10 +295,10 @@ $cb                     : #9e9e9e;
         line-height: $day-height / 2;
       }
       .blue{
-        background: blue;
+        background: $blue;
       }
       .red{
-        background: red;
+        background: $red;
       }
     }
   }

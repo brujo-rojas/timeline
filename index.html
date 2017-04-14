@@ -14,9 +14,12 @@
         </div>
 
 
-      <header>
-        <div class="dia-calendario" ng-repeat="dia in tl.diasHeader">
-          <span>{{dia.unix | date:"d MMM"}}</span>
+      <header ng-click="tl.toggleHeaderInputs()"
+         ng-class="{'show-inputs': tl.showedHeaderInputs}">
+        <div ng-repeat="dia in tl.diasHeader" class="dia-calendario" >
+          <span class="date">{{dia.unix | date:"d"}}
+            <span class="month">{{dia.unix | date:"MMM"}}</span>
+          </span>
         </div>
       </header>
 

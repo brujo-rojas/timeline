@@ -59,11 +59,13 @@ body {
       margin-top: 7px;
       vertical-align: bottom; }
       .timeline header .dia-calendario span {
+        cursor: pointer; }
+      .timeline header .dia-calendario .date {
         display: block;
         font-size: 12px;
         color: #455a64;
         width: 60px;
-        transform: rotate(-45deg) translate(5px, -5px); }
+        transform: rotate(-45deg) translate(1px, -10px); }
   .timeline .sidebar-extended {
     width: 0px;
     background: red;
@@ -89,12 +91,12 @@ body {
     .timeline nav .equipo {
       position: relative; }
       .timeline nav .equipo .nombre-equipo {
-        height: 100%;
+        height: calc( 100% - 1px);
         width: 30px;
         left: 0px;
         top: 0px;
         position: absolute;
-        border-bottom: 1px solid blue;
+        border-bottom: 1px solid black;
         background: #fff9c4; }
         .timeline nav .equipo .nombre-equipo span {
           transform: translateX(-50%) translateY(-50%) rotate(-90deg);
@@ -182,7 +184,8 @@ body {
       .timeline .tl-container .dia:hover {
         background: red; }
       .timeline .tl-container .dia .number {
-        width: 30px;
+        width: 28px;
+        margin-left: 1px;
         display: block;
         color: white;
         text-align: center;
@@ -190,8 +193,8 @@ body {
         height: 15px;
         line-height: 15px; }
       .timeline .tl-container .dia .blue {
-        background: blue; }
+        background: #1976d2; }
       .timeline .tl-container .dia .red {
-        background: red; }
+        background: #e53935; }
 
 /*# sourceMappingURL=style.css.map */
