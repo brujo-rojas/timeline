@@ -5,6 +5,11 @@ body {
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important; }
 
+.random-container {
+  width: 1000px;
+  height: 500px;
+  margin: 0 auto; }
+
 .timeline {
   overflow: hidden;
   height: 500px;
@@ -20,6 +25,8 @@ body {
   .timeline.with-sidebar-extended .tl-container,
   .timeline.with-sidebar-extended header {
     padding-left: 400px; }
+  .timeline.with-selected-days .dia .number {
+    opacity: 0.5; }
   .timeline .last-position {
     width: 30px;
     height: 30px; }

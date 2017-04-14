@@ -175,11 +175,11 @@
 
     vm.eventToPosition = function(ev) {
       var target = $(ev.currentTarget);
-      var t = parseInt(target.css("padding-left")) + parseInt(target.css("margin-left")) + parseInt(target.position().left);
+      var t = parseInt(target.css("padding-left")) +  parseInt(target.offset().left);
       var a = ev.clientX + target.scrollLeft() - t;
       var left = a - (a%30);
 
-      var y = parseInt(target.css("padding-top")) + parseInt(target.css("margin-top")) + parseInt(target.position().top);
+      var y = parseInt(target.css("padding-top")) +  parseInt(target.offset().top);
       var b = ev.clientY + target.scrollTop() - y;
       var top = b - (b%30);
 

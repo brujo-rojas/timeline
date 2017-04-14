@@ -45,6 +45,13 @@ $tmed-color: $red;
 $et-color: $blue;
 
 
+.random-container{
+  width: 1000px;
+  height: 500px;
+  margin: 0 auto;
+}
+
+
 
 .timeline{
   overflow:hidden;
@@ -65,6 +72,9 @@ $et-color: $blue;
     header{
       padding-left: $sidenav-width + $sidenav-extended-width;
     }
+  }
+  &.with-selected-days .dia .number{
+    opacity: 0.5;
   }
   .last-position{
     width: $day-width;

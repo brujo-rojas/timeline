@@ -5,8 +5,14 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
   <body  ng-cloak>
+    <section class="random-container">
+
     <div class="timeline"
-      ng-class="{'with-sidebar-right': tl.visibleSidebarRight, 'with-sidebar-extended': tl.visibleSidebarDetails}">
+      ng-class="{
+        'with-sidebar-right': tl.visibleSidebarRight,
+        'with-selected-days': tl.diasSeleccionados.length > 0,
+        'with-sidebar-extended': tl.visibleSidebarDetails
+      }">
       <div class="esquina"
       ng-class="{'show-inputs': tl.showedHeaderInputs}">
       <button type="button" ng-click="tl.toggleHeaderInputs()">toggle</button>
@@ -94,9 +100,8 @@
         </div>
       </div>
 
-
-
     </div>
+    </section>
     <button ng-click="tl.mostrarSidebar()" type="button">mostrarSidebar</button>
     <button ng-click="tl.ocultarSidebar()" type="button">ocultarSidebar</button>
     <br>
